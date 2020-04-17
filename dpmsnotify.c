@@ -13,21 +13,22 @@ void sighandler(int signum){
 void printdpms(int level){
   switch(level){
   case XCB_DPMS_DPMS_MODE_ON:
-    printf("%d ON\n",level);
+    fprintf(stdout,"%d ON\n",level);
     break;
   case XCB_DPMS_DPMS_MODE_STANDBY:
-    printf("%d STANDBY\n",level);
+    fprintf(stdout,"%d STANDBY\n",level);
     break;
   case XCB_DPMS_DPMS_MODE_SUSPEND:
-    printf("%d SUSPEND\n",level);
+    fprintf(stdout,"%d SUSPEND\n",level);
     break;
   case XCB_DPMS_DPMS_MODE_OFF:
-    printf("%d OFF\n",level);
+    fprintf(stdout,"%d OFF\n",level);
     break;
   default:
-    printf("%d UNKNOWN\n",level);
+    fprintf(stdout,"%d UNKNOWN\n",level);
     break;
   }
+  fflush(stdout);
 }
 
 int check_xcb_connection(xcb_connection_t *conn){

@@ -40,7 +40,9 @@ int check_xcb_connection(xcb_connection_t *conn){
 int get_dpms_level(xcb_connection_t *conn){
   xcb_dpms_info_cookie_t cookie=xcb_dpms_info_unchecked(conn);
   xcb_dpms_info_reply_t *reply=xcb_dpms_info_reply(conn,cookie,NULL);
-  return reply->power_level;
+  int level=reply->power_level;
+  free(reply);
+  return level;
 }
 
 int wait_for_dpms(xcb_connection_t *conn,int previous_level){
